@@ -1,17 +1,16 @@
 #pragma once
 
-#include"AbstractScene.h"
+#include"CharaBase.h"
 
-class GameMain : public AbstractScene
+class Player : public CharaBase
 {
 private:
-	int	*player;
-	int* enemy[5];
-public:
-	GameMain();
+	int score;
+	int life;
 
+public:
 	//デストラクタ
-	virtual ~GameMain() {};
+	virtual ~Player() {};
 
 	//描画以外の更新を実装する
 	virtual AbstractScene* Update() override;
@@ -19,5 +18,5 @@ public:
 	//描画に関することを実装する
 	virtual void Draw() const override;
 
-	int HitCheck(int);
+	virtual void Hit() override;
 };
