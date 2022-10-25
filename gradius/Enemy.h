@@ -2,15 +2,15 @@
 
 #include"CharaBase.h"
 
-class Player : public CharaBase
+class Enemy : public CharaBase
 {
 private:
-	int score;
-	int life;
+	int hp;
+	int point;
 
 public:
 	//デストラクタ
-	virtual ~Player() {};
+	virtual ~Enemy() {};
 
 	//描画以外の更新を実装する
 	virtual AbstractScene* Update() override;
@@ -20,8 +20,7 @@ public:
 
 	virtual void Hit() override;
 
-	int LifeCheck();
-
-	int GetScore();
+	int HpCheck(void);
+	int GetPoint(void);
 
 };
