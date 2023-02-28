@@ -1,26 +1,28 @@
 #pragma once
 #include"AbstractScene.h"
 
-class SceneManager : public AbstractScene
+class SceneManager
 {
 private:
 	AbstractScene* mScene;  //現在のシーン
 
 public:
 	//コンストラクタ
-	SceneManager(AbstractScene* scene) : mScene(scene) {}
+	SceneManager(AbstractScene* scene);
 
 	//デストラクタ
-	~SceneManager()
+	/*~SceneManager()
 	{
 		delete mScene;
-	}
+	}*/
 
 	//描画以外の更新を実装する
-	AbstractScene* Update() override;
+	void Update();
 
 	//描画に関することを実装する
-	void Draw() const override;
+	void Draw() const;
+
+	void ChangeScene();
 };
 
 

@@ -151,27 +151,44 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Boss.cpp" />
     <ClCompile Include="BulletsBase.cpp" />
     <ClCompile Include="CharaBase.cpp" />
+    <ClCompile Include="Clear.cpp" />
     <ClCompile Include="Enemy.cpp" />
+    <ClCompile Include="EnemyBullets.cpp" />
     <ClCompile Include="GameMain.cpp" />
+    <ClCompile Include="GameOver.cpp" />
+    <ClCompile Include="Key.cpp" />
     <ClCompile Include="ItemBase.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Player.cpp" />
+    <ClCompile Include="PlayerBullets.cpp" />
     <ClCompile Include="SceneManager.cpp" />
+    <ClCompile Include="BoxCollider.cpp" />
     <ClCompile Include="SphereCollider.cpp" />
+    <ClCompile Include="Stage.cpp" />
     <ClCompile Include="Title.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AbstractScene.h" />
+    <ClInclude Include="Boss.h" />
     <ClInclude Include="BulletsBase.h" />
     <ClInclude Include="CharaBase.h" />
+    <ClInclude Include="Clear.h" />
+    <ClInclude Include="define.h" />
     <ClInclude Include="Enemy.h" />
+    <ClInclude Include="EnemyBullets.h" />
     <ClInclude Include="GameMain.h" />
+    <ClInclude Include="GameOver.h" />
+    <ClInclude Include="Key.h" />
     <ClInclude Include="ItemBase.h" />
     <ClInclude Include="Player.h" />
+    <ClInclude Include="PlayerBullets.h" />
     <ClInclude Include="SceneManager.h" />
+    <ClInclude Include="BoxCollider.h" />
     <ClInclude Include="SphereCollider.h" />
+    <ClInclude Include="Stage.h" />
     <ClInclude Include="Title.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

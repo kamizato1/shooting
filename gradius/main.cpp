@@ -34,15 +34,19 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 
     SetFontSize(20);		// 文字サイズを設定
 
-    SceneManager sceneMng(new Title());
+    SceneManager* sceneMng = new SceneManager(new Title());
 
-    while (sceneMng.Update() != nullptr)
+    while (ProcessMessage() == 0)
     {
+        sceneMng->Update();
+
         ClearDrawScreen();		// 画面の初期化
 
-        sceneMng.Draw();
+        sceneMng->Draw();
 
         ScreenFlip();			// 裏画面の内容を表画面に反映
+
+        sceneMng->ChangeScene();
     }
 
 

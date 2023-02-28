@@ -1,46 +1,44 @@
 #include<dxlib.h>
-
 #include"Title.h"
+#include"GameMain.h"
+#include"define.h"
 
-
-AbstractScene* Title::Update()
+Title::Title()
 {
-    //タイトル画像データの読み込み
-    //g_TitleImage = LoadGraph("images/Title.png");
+   key = new Key();
+    flashing_time = 0;
+    push_time = 0;
+}
 
-    //メニューカーソル移動処理
-    if (GetJoypadInputState(DX_INPUT_KEY_PAD1) & PAD_INPUT_DOWN) {
-        if (++g_MenuNumber > 2) g_MenuNumber = 0;
-    }
-    if (GetJoypadInputState(DX_INPUT_KEY_PAD1) & PAD_INPUT_UP) {
-        if (--g_MenuNumber < 0) g_MenuNumber = 2;
-    }
+Title::~Title()
+{
+    delete key;
+}
 
-    // Ｚキーでメニュー選択
-    /*if (GetJoypadInputState(DX_INPUT_KEY_PAD1) & PAD_INPUT_A && g_MenuNumber == 0)
-    {
-        return new GameInit;
-    }*/
-
-    //if (GetJoypadInputState(DX_INPUT_KEY_PAD1) & PAD_INPUT_A && g_MenuNumber == 1)return new DrawRanking;
-    //if GetJoypadInputState(DX_INPUT_KEY_PAD1); & PAD_INPUT_A && g_MenuNumber == 2)return new DrawEnd;
-
-    g_MenuY = g_MenuNumber * 52;
-
-    
-
-    return this;
+void Title::Update()
+{
+    push_time++;
+    flashing_time++;
+    if (flashing_time >= 60)flashing_time = 0;
+    key->Update();
 }
 
 void Title::Draw() const
 {
-    //タイトル画像表示
-    //DrawGraph(0, 0, g_TitleImage, FALSE);
+    SetFontSize(170);
+    DrawString(100, 70, "Gradius", 0xffffff);
+    SetFontSize(50);
+    //flashing_timeが30で割って0になるときのみ表示
+    if(flashing_time / 30 == 0)DrawString(190, 300, "Bボタンを押そう！", 0xffffff);
+}
 
-    //メニューカーソル（三角形）の表示
-
-    SetFontSize(150);
-    DrawString(150, 70, "Gradius", 0xffffff);
-
-    DrawTriangle(240, 255 + g_MenuY, 260, 270 + g_MenuY, 240, 285 + g_MenuY, GetColor(255, 0, 0), TRUE);
+AbstractScene* Title::ChangeScene()
+{
+    if (key->KeyDown(B_KEY) && push_time >= 30)
+    {
+        SetFontSize(30);
+        return new GameMain(); //bボタンを押したらゲームメインに行く
+    }
+    return this;
+    
 }

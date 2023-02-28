@@ -3,12 +3,11 @@
 class AbstractScene
 {
 public:
-	//デストラクタ
-	virtual ~AbstractScene() {};
-
+	
 	//描画以外の更新を実装する
-	virtual AbstractScene* Update() = 0;
+	virtual void Update() = 0;
 
 	//描画に関することを実装する
 	virtual void Draw() const = 0;
+	virtual AbstractScene* ChangeScene() = 0;
 };

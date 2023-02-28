@@ -2,20 +2,28 @@
 #include"SceneManager.h"
 #include"AbstractScene.h"
 
-AbstractScene* SceneManager::Update()
+SceneManager::SceneManager(AbstractScene* scene)
 {
-	AbstractScene* p = mScene->Update();
-
-	if (p != mScene)
-	{
-		delete mScene;
-		mScene = p;
-	}
-
-	return p;
+	mScene = scene;  //m_Scene ← シーンポインタ型の変数　現在表示するシーンを入れる
 }
 
-void SceneManager::Draw() const
+void SceneManager::Update()
 {
-	mScene->Draw();
+	//InputManager::Update();
+	mScene->Update();//今動かしてるシーンのupdateをやる
+}
+
+void SceneManager::Draw()const
+{
+	mScene->Draw();//今動かしてるシーンのDrawをやる
+}
+
+void SceneManager::ChangeScene()
+{
+	AbstractScene* next = mScene->ChangeScene();  //次のシーンと現在のシーンを比べる // -> アロー演算子　ポインタの先のやつにアクセスする　m_Scene->ChangeScene
+	if (next != mScene)//二つのシーンが違うなら
+	{
+		delete mScene; //newで書き込んだのはdeleteで消す
+		mScene = next; //	next	を入れる
+	}
 }

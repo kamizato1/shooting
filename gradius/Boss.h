@@ -2,17 +2,29 @@
 #include"CharaBase.h"
 #include"BoxCollider.h"
 
-class Enemy : public CharaBase, public BoxCollider
+enum class BOSS_MOVE
+{
+	UP, //上に向かって動く
+	DOWN,//下に向かって動く
+	RIGHT,//右に向かって動く
+	LEFT//左に向かって動く
+};
+
+
+class Boss : public CharaBase, public BoxCollider
 {
 private:
 	int point;
 	int hp;
-	int g_enemy_angle;
-	bool g_enemy_flg;
+
+	int explosion_image;
+	
+	BOSS_MOVE boss_move;
+	CHARA_STATE boss_state;
 
 public:
 
-	Enemy();
+	Boss();
 
 	//描画以外の更新を実装する
 	virtual void Update() override;
@@ -21,12 +33,10 @@ public:
 
 	int GetEnemyX();
 	int GetEnemyY();
-	int GetEnemyRadius();
 
 	virtual bool DeleteJudgment()const override;
-	virtual void Hit() override {};
-	
+	virtual void Hit() override;
+
 	int HpCheck(void);
 	int GetPoint(void);
-
 };
